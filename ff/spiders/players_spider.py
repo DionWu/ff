@@ -26,14 +26,33 @@ class PlayersSpider(scrapy.Spider):
 				#WHAT ABOUT PUNT / KICKOFF RETURNS?
 
 					'player_name' : player_name,
-					#'game_date' : game.xpath('td[contains(@data-stat, "game_date")]/a/text()').extract_first(),
 					'week_num' : game.xpath('td[contains(@data-stat, "week_num")]/text()').extract_first(),
 					'team' : game.xpath('td[contains(@data-stat, "team")]/a/text()').extract_first(),
+					#'game_date' : game.xpath('td[contains(@data-stat, "game_date")]/a/text()').extract_first(),
+
+					#QB stats
+					'pass_att' : game.xpath('td[contains(@data-stat, "pass_att")]/text()').extract_first(),
+					'pass_cmp' : game.xpath('td[contains(@data-stat, "pass_cmp")]/text()').extract_first(),
+					'pass_yds' : game.xpath('td[contains(@data-stat, "pass_yds")]/text()').extract_first(),
+					'pass_td' : game.xpath('td[contains(@data-stat, "pass_td")]/text()').extract_first(),
+					'pass_int' : game.xpath('td[contains(@data-stat, "pass_int")]/text()').extract_first(),
+
+					#WR stats
 					'targets' : game.xpath('td[contains(@data-stat, "targets")]/text()').extract_first(),
 					'rec' : game.xpath('td[contains(@data-stat, "rec")]/text()').extract_first(),
 					'rec_yds' : game.xpath('td[contains(@data-stat, "rec_yds")]/text()').extract_first(),
 					'rec_tds' : game.xpath('td[contains(@data-stat, "rec_td")]/text()').extract_first(),
+
+					#RB stats
 					'rush_att' : game.xpath('td[contains(@data-stat, "rush_att")]/text()').extract_first(),
 					'rush_yds' : game.xpath('td[contains(@data-stat, "rush_yds")]/text()').extract_first(),
 					'rush_td' : game.xpath('td[contains(@data-stat, "rush_td")]/text()').extract_first()
+
+					#KR/PR stats
+					'kick_ret' : game.xpath('td[contains(@data-stat, "kick_ret")]/text()').extract_first(),
+					'kick_ret_yds' : game.xpath('td[contains(@data-stat, "kick_ret_yds")]/text()').extract_first(),
+					'kick_ret_td' : game.xpath('td[contains(@data-stat, "kick_ret_td")]/text()').extract_first()
+					'punt_ret' : game.xpath('td[contains(@data-stat, "punt_ret")]/text()').extract_first(),
+					'punt_ret_yds' : game.xpath('td[contains(@data-stat, "punt_ret_yds")]/text()').extract_first(),
+					'punt_ret_td' : game.xpath('td[contains(@data-stat, "punt_ret_td")]/text()').extract_first()
 				}
