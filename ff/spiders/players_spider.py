@@ -6,7 +6,7 @@ class PlayersSpider(scrapy.Spider):
 	start_urls = ['https://www.pro-football-reference.com/players/']
 
 	def parse(self, response):
-		for letter_href in response.css('ul.page_index li > a::attr(href)').extract():
+		for letter_href in response.css('ul.page_index li > a::attr(href)'):
 			yield response.follow(letter_href, self.parse_position)
 
 	def parse_position(self, response):
@@ -46,12 +46,12 @@ class PlayersSpider(scrapy.Spider):
 					#RB stats
 					'rush_att' : game.xpath('td[contains(@data-stat, "rush_att")]/text()').extract_first(),
 					'rush_yds' : game.xpath('td[contains(@data-stat, "rush_yds")]/text()').extract_first(),
-					'rush_td' : game.xpath('td[contains(@data-stat, "rush_td")]/text()').extract_first()
+					'rush_td' : game.xpath('td[contains(@data-stat, "rush_td")]/text()').extract_first(),
 
 					#KR/PR stats
 					'kick_ret' : game.xpath('td[contains(@data-stat, "kick_ret")]/text()').extract_first(),
 					'kick_ret_yds' : game.xpath('td[contains(@data-stat, "kick_ret_yds")]/text()').extract_first(),
-					'kick_ret_td' : game.xpath('td[contains(@data-stat, "kick_ret_td")]/text()').extract_first()
+					'kick_ret_td' : game.xpath('td[contains(@data-stat, "kick_ret_td")]/text()').extract_first(),
 					'punt_ret' : game.xpath('td[contains(@data-stat, "punt_ret")]/text()').extract_first(),
 					'punt_ret_yds' : game.xpath('td[contains(@data-stat, "punt_ret_yds")]/text()').extract_first(),
 					'punt_ret_td' : game.xpath('td[contains(@data-stat, "punt_ret_td")]/text()').extract_first()
